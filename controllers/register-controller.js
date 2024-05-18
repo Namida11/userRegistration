@@ -11,7 +11,12 @@ const getRegisterPage = (req, res) => {
 
 async function getRegisterUser(req, res) {
   const body = await parseRequestBody(req);
-  const user = new USER(body.email, body.username, body.password);
+  const user = new USER(
+    body.email,
+    body.username,
+    body.password,
+    body.isActive
+  );
   const result = await userService.insertUser(user);
   generaterResponce(201, res, result);
 }

@@ -22,8 +22,9 @@ async function getData(key) {
 
 async function insertData(jsonKey, model) {
   const allData = await getAllJSONDataFromText();
-  console.log(allData);
+
   const newModel = { id: generateUniqueId(allData[jsonKey]), ...model };
+
   allData[jsonKey].push(newModel);
   await writeFileAsync(DB_PATH, JSON.stringify(allData, null, 2));
   return newModel;

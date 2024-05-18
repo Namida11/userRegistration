@@ -25,7 +25,9 @@
                 placeholder="Enter your password"
               />
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary" id="loginBtn">
+              Login
+            </button>
           </form>
         </div>
       </div>
@@ -34,3 +36,40 @@
 </div>
 
 <%- include(rootPath +'/views/layouts/footer.ejs') %>
+<script>
+  const loginBtn = document.querySelector("#loginBtn");
+  const username = document.querySelector("#username");
+  const password = document.querySelector("#password");
+
+  const clearAllData = () => {
+    username.value = "";
+    password.value = "";
+  };
+
+  async function loginAction(e) {
+    e.preventDefault();
+
+    const user = {
+      username: username.value,
+      password: password.value,
+    };
+
+    const resJson = await fetch("http://localhost:5555/login/verify", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    const res = await resJson.json();
+    if (!res.success) {
+      window.location.href = "/register";
+    }
+
+    return alert(res.message);
+    clearAllData();
+  }
+
+  loginBtn.addEventListener("click", loginAction);
+</script>

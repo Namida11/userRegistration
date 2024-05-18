@@ -1,6 +1,8 @@
 class Validation {
-  constructor(success, message) {
+  constructor(success, message = "") {
     this.success = success;
     this.message = message;
   }
 }
+
+module.exports = Validation;

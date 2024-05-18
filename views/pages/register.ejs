@@ -34,7 +34,9 @@
                 placeholder="Enter your password"
               />
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary" id="regBTN">
+              Register
+            </button>
           </form>
         </div>
       </div>
@@ -43,3 +45,42 @@
 </div>
 
 <%- include(rootPath +'/views/layouts/footer.ejs') %>
+
+<script>
+  const regBTN = document.querySelector("#regBTN");
+  const username = document.querySelector("#username");
+  const email = document.querySelector("#email");
+  const password = document.querySelector("#password");
+
+  const clearAllData = () => {
+    email.value = "";
+    username.value = "";
+    password.value = "";
+  };
+  async function registerAction(e) {
+    e.preventDefault();
+    const user = {
+      email: email.value,
+      username: username.value,
+      password: password.value,
+      isActive: true,
+    };
+
+    const resJson = await fetch("http://localhost:5555/register/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    const res = await resJson.json();
+
+    if (!res.succcess) return alert(res.message);
+    else {
+      return res.message;
+    }
+    clearAllData();
+  }
+  regBTN.addEventListener("click", registerAction);
+</script>

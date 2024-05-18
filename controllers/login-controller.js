@@ -1,25 +1,21 @@
-// const fs = require("fs");
-// const path = require("path");
-// const getRootPath = require("../utils/root-path");
-// const ejs = require("ejs");
-
+const generaterResponce = require("../utils/generater-responce");
 const loadEJS = require("../utils/load-ejs");
+const USER = require("../models/user");
+const { getData } = require("../services/base-service");
+const userService = require("../services/user-service");
+const parseRequestBody = require("../utils/parseRequest");
 
 const getLoginPage = (req, res) => {
   loadEJS("login", req, res);
-  
-  // const ejsFilePath = path.join(getRootPath(), "views", "pages", "login.ejs");
-  // fs.readFile(ejsFilePath, "utf-8", (err, data) => {
-  //   if (err) {
-  //     res.writeHead(500, { "Content-Type": "text/plain" });
-  //     res.end(`Internal server error`);
-  //   }
-  //   const renderedHTML = ejs.render(data, { rootPath: getRootPath() });
-  // res.writeHead(200, { "Content-Type": "text/html" });
-  // res.end(renderedHTML);
-  // });
 };
+
+async function verifyUser(req, res) {
+  const body = await parseRequestBody(req);
+  const result = await userService.userVerify(body);
+  generaterResponce(200, res, result);
+}
 
 module.exports = {
   getLoginPage,
+  verifyUser,
 };

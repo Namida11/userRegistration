@@ -1,22 +1,25 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "Namida",
-      "password": "Aa1234",
-      "email": "namidayolchuyeva@gmail.com"
+      "id": "1",
+      "email": "namida@gmail.com",
+      "username": "namida",
+      "password": "$2b$10$9Ld7oVzLCuBdnZBvxHH1EuGxwr5MlPTbW1AJO.qKrlZywsBfZub/i",
+      "isActive": true
     },
     {
-      "id": 2,
-      "username": "Sevda",
-      "password": "Aa12345",
-      "email": "sevda@gmail.com"
+      "id": "2",
+      "email": "namida1@gmail.com",
+      "username": "namida1",
+      "password": "$2b$10$fxaWLxShadWrDi8EuAPHvO9Tr3ovXD0Jt8hVP1JxMXA1usG9dWlzO",
+      "isActive": true
     },
     {
       "id": "3",
-      "email": "namidayolchuyeva@gmail.com",
-      "username": "Namida",
-      "password": "Aa1234"
+      "email": "namida123@gmail.com",
+      "username": "namida123",
+      "password": "$2b$10$riYoBFdEbXEkEmXiGp146OrPgLywlTOrJeE0mdOV25Xf76xVn82b2",
+      "isActive": true
     }
   ]
 }
